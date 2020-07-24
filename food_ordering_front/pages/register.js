@@ -82,8 +82,8 @@ const Register = () => {
                   </FormGroup>
                   <FormGroup>
                     <span>
-                      <a href="">
-                        <small>Forgot Password?</small>
+                      <a href="/login">
+                        <small>If you have an account, please Sign In</small>
                       </a>
                     </span>
                     <Button

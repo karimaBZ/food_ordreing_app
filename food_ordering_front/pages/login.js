@@ -75,8 +75,8 @@ function Login(props) {
 
                   <FormGroup>
                     <span>
-                      <a href="">
-                        <small>Forgot Password?</small>
+                      <a href="http://localhost:3000/register">
+                        <small>Sign Up</small>
                       </a>
                     </span>
                     <Button

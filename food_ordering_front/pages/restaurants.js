@@ -3,8 +3,6 @@ import { useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
 import { gql } from "apollo-boost";
-
-
 import Cart from "../components/cart/";
 import AppContext from "../context/AppContext";
 
@@ -17,6 +15,7 @@ import {
   CardTitle,
   Col,
   Row,
+  Alert
 } from "reactstrap";
 
 const GET_RESTAURANT_DISHES = gql`
@@ -39,10 +38,12 @@ const GET_RESTAURANT_DISHES = gql`
 
 function Restaurants() {
   const appContext = useContext(AppContext);
+  const { isAuthenticated } = appContext;
   const router = useRouter();
   const { loading, error, data } = useQuery(GET_RESTAURANT_DISHES, {
     variables: { id: router.query.id },
   });
+  console.log("Restaurants -> appContext", appContext)
 
   if (error) return "Error Loading Dishes";
   if (loading) return <h1>Loading ...</h1>;
@@ -68,13 +69,25 @@ function Restaurants() {
                   <Button
                     outline
                     color="primary"
-                    onClick={() => appContext.addItem(res)}
+                    disabled={isAuthenticated === false}
                   >
                     + Add To Cart
                   </Button>
+                  <p><br /></p>
+                  {
+                    isAuthenticated === false && (<>
+                      <Alert color="danger">
+                        Please<a href="/login"> sign-in </a>
+                      </Alert>
+                    </>)
+                  }
+
 
                   <style jsx>
                     {`
+                      p {
+                        margin : 0
+                      }
                       a {
                         color: white;
                       }
@@ -97,11 +110,13 @@ function Restaurants() {
               </Card>
             </Col>
           ))}
-          <Col xs="3" style={{ padding: 0 }}>
-            <div>
-              <Cart />
-            </div>
-          </Col>
+          {
+            appContext.isAuthenticated === true && (
+              <Col xs="3" style={{ padding: 0 }}>
+                <Cart />
+              </Col>
+            )
+          }
         </Row>
       </>
     );
