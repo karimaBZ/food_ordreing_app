@@ -101,9 +101,6 @@ function Restaurants() {
                       .btn-outline-primary {
                         color: #007bff !important;
                       }
-                      a:hover {
-                        color: white !important;
-                      }
                     `}
                   </style>
                 </div>

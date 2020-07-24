@@ -72,10 +72,6 @@ function RestaurantList(props) {
               }
               a:link {
                 text-decoration: none;
-                color: white;
-              }
-              a:hover {
-                color: white;
               }
               .card-columns {
                 column-count: 3;

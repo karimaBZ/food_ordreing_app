@@ -136,9 +136,6 @@ const Register = () => {
           .wrapper {
             padding: 10px 30px 20px 30px !important;
           }
-          a {
-            color: blue !important;
-          }
           img {
             margin: 15px 30px 10px 50px;
           }
